@@ -16,6 +16,11 @@ export class PostsController {
     return await this.postsService.findOne(id);
   }
 
+  @Get("user/:userId")
+  async findByUserId(@Param("userId") userId: string): Promise<PostModel[]> {
+    return await this.postsService.findByUserId(userId);
+  }
+
   @Post()
   async create(@Body() data: PostModel): Promise<PostModel> {
     return await this.postsService.create(data);

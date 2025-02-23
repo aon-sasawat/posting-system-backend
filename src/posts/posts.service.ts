@@ -7,14 +7,42 @@ export class PostsService {
   constructor(private prisma: PrismaService) {}
 
   async findAll(): Promise<Post[]> {
-    return await this.prisma.post.findMany();
+    return await this.prisma.post.findMany({
+      include: {
+        user: true,
+        tag: true,
+        comments: true,
+      },
+    });
   }
 
   async findOne(id: string): Promise<Post | null> {
-    const post = await this.prisma.post.findUnique({ where: { id } });
+    const post = await this.prisma.post.findUnique({
+      where: { id },
+      include: {
+        user: true,
+        tag: true,
+        comments: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    });
     if (!post) throw new HttpException("Post not found", HttpStatus.NOT_FOUND);
 
     return post;
+  }
+
+  async findByUserId(userId: string): Promise<Post[]> {
+    return await this.prisma.post.findMany({
+      where: { userId },
+      include: {
+        user: true,
+        tag: true,
+        comments: true,
+      },
+    });
   }
 
   async create(data: Post): Promise<Post> {
