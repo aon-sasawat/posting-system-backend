@@ -5,9 +5,11 @@ import { PostsModule } from "./posts/posts.module";
 import { PrismaService } from "./service/prisma/prisma.service";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { ResponseInterceptor } from "./interceptors/response.interceptor";
+import { UsersModule } from "./users/users.module";
+import { CommentsModule } from "./comments/comments.module";
 
 @Module({
-  imports: [PostsModule],
+  imports: [PostsModule, UsersModule, CommentsModule],
   controllers: [AppController],
   providers: [
     AppService,
