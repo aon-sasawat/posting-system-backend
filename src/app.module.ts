@@ -7,9 +7,10 @@ import { APP_INTERCEPTOR } from "@nestjs/core";
 import { ResponseInterceptor } from "./interceptors/response.interceptor";
 import { UsersModule } from "./users/users.module";
 import { CommentsModule } from "./comments/comments.module";
+import { TagsModule } from "./tags/tags.module";
 
 @Module({
-  imports: [PostsModule, UsersModule, CommentsModule],
+  imports: [PostsModule, UsersModule, CommentsModule, TagsModule],
   controllers: [AppController],
   providers: [
     AppService,
