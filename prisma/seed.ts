@@ -8,7 +8,7 @@ async function main() {
     { name: "Food" },
     { name: "Pets" },
     { name: "Health" },
-    { name: "Fashios" },
+    { name: "Fashion" },
     { name: "Exercise" },
     { name: "Others" },
   ];
